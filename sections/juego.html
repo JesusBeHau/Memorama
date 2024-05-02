@@ -44,6 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             <div class="panel panel-custom">
                 <div class="panel-heading panel-custom-head">
                     <h4>Puntaje</h4>
+                    <button id="pause-button" class="btn btn-warning">Pausar</button> <!-- Botón de pausa -->
                 </div>
 
                 <div id="tablero_puntaje" class="panel-body">
@@ -52,14 +53,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     <div class="text-center">
                         <h1 id="timer" class="buen-tiempo">Reloj</h1>
                     </div>
-
                     <h2 id="nombre-jugador">Jugador 1</h2>
                     <label for="puntaje">Puntaje</label>
                     <input type="number" class="form-control" id="puntaje" disabled="disabled">
-
-
-
-
                 </div>
             </div>
             <div id="resultado"></div>
@@ -122,7 +118,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
+
+        <!-- Modal para pausar el juego -->
+        <div id="pause-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="pauseModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="pauseModalLabel">Juego Pausado</h5>
+                    </div>
+                    <div class="modal-body" style="height: 5em; display: flex; align-items: center;">
+                        El juego está en pausa. ¿Qué quieres hacer?
+                    </div>
+                    <div class="modal-footer">
+                        <button id="resume-button" class="btn btn-primary">Reanudar</button>
+                        <button id="exit-button" class="btn btn-danger">Salir del juego</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </body>
-
-
 </html>

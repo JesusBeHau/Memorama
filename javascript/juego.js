@@ -1,4 +1,8 @@
+var juegoPausado = false; // Para rastrear si el juego está en pausa
+var tiempoRestante; // Para guardar el tiempo restante cuando se pausa
+
 $(document).ready(function() {
+
 
     //Ver nombre del jugador con sesion iniciada
     $.get("../core/php/VerifyUserName.php").done(function(data) {
@@ -34,10 +38,20 @@ $(document).ready(function() {
             break;
     }
 
+    $("#pause-button").click(function() {
+        pausarJuego();
+    });
+
+    $("#resume-button").click(function() {
+        reanudarJuego(); // Reanudar el juego y cerrar el modal
+    });
+
+    $("#exit-button").click(function() {
+        salirJuego(); // Salir del juego, redirigir al menú o a otra sección
+    });
+
     pedirDatos(materia);
     iniciarContador(tiempo);
-
-
 });
 
 var dificultad;
@@ -291,23 +305,45 @@ function desbloquearCartas() {
 var intervaloContador;
 
 function iniciarContador(tiempo) {
-    $("#timer").text(tiempo);
+    tiempoRestante = tiempo; // Guardar el tiempo restante
+    $("#timer").text(tiempoRestante);
     intervaloContador = setInterval(function() {
-        var tiempoDecr = parseInt($("#timer").text());
+        if (!juegoPausado) { // Solo decrementar si el juego no está pausado
+            tiempoRestante--;
+            if (tiempoRestante <= 0) {
+                console.log("Se acabó el tiempo");
+                clearInterval(intervaloContador);
+                mostrarTiempoTerminado();
+            }
+            $("#timer").text(tiempoRestante);
 
-        tiempoDecr = tiempoDecr - 1;
-        if (tiempoDecr === 100) {
-            $("#timer").removeClass("buen-tiempo").addClass("poco-tiempo");
+            if (tiempoRestante === 100) {
+                $("#timer").removeClass("buen-tiempo").addClass("poco-tiempo");
+            }
         }
-        if (tiempoDecr === 0) {
-            console.log("Se acabo el tiempo");
-            clearInterval(intervaloContador);
-            mostrarTiempoTerminado();
-        }
-
-        $("#timer").text(tiempoDecr);
 
     }, 1000);
+}
+
+function pausarJuego() {
+    juegoPausado = true;
+    clearInterval(intervaloContador)
+    // Mostrar el modal para la pausa
+    $("#pause-modal").modal({
+        backdrop: 'static', // Evita cerrar el modal haciendo clic fuera de él
+        keyboard: false    // Evita cerrar el modal con la tecla Escape
+    });
+}
+
+function reanudarJuego() {
+    juegoPausado = false;
+    iniciarContador(tiempoRestante); // Reanudar el cronómetro
+    $("#pause-modal").modal("hide"); // Cerrar el modal
+}
+
+function salirJuego() {
+    // Redirigir a la página de inicio o a un menú
+    window.location.href = "MenuStudent.html";
 }
 
 function mostrarTiempoTerminado() {
@@ -372,5 +408,3 @@ function revolver(array) {
     }
     return array;
 }
-
-
