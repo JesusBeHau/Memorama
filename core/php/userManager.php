@@ -50,6 +50,17 @@ class UserManager{
         return "";
     }
 
+    public function updatePassword($name, $password){
+        $query = "UPDATE usuario set clave = '$password' WHERE nombre='$name' ";
+
+        $resultado = $this->dbManager->insertQuery($query);
+
+        if(!is_bool($resultado)){
+            return $resultado;
+        }
+        return "";
+    }
+
     public function getUser($name, $password){
         $query = "SELECT * FROM usuario WHERE nombre='$name' AND clave='$password'";
 

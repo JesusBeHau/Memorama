@@ -35,10 +35,37 @@
 </div>
 
 <div class="login-help">
-    <p>Forgot your password? <a href="index.html">Click here to reset it</a>.</p>
+    <p>Forgot your password?
+        <button id="reset-password"
+        style="background: none; border: none; color: blue; text-decoration: underline; cursor: pointer; padding: 0; font-family: inherit; font-size: inherit;">
+            Click here to reset it
+        </button> .
+    </p>
 </div>
 
 <div id="loginResponse"></div>
 
+<!-- Modal para cambiar contraseña-->
+<div id="reset-password-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="pauseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pauseModalLabel">Cambiar contraseña</h5>
+            </div>
+            <div class="modal-body">
+                <div class="">
+                    <div id="reset-password-response"></div>
+                    <p><input class="form-control" type="text" id="userToReset" value="" placeholder="Nombre de usuario o correo"></p>
+                    <p><input class="form-control" type="password" id="newPassword" value="" placeholder="Nueva contraseña"></p>
+                    <p><input class="form-control" type="password" id="newPasswordAgain" value="" placeholder="Repetir contraseña"></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="change-password-button" class="btn btn-primary">Confirmar</button>
+                <button id="exit-button" class="btn btn-danger">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
