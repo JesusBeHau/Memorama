@@ -6,10 +6,18 @@
  * Date: 07/02/2016
  * Time: 07:55 PM
  */
-define('SERVER', 'localhost');
-define('USERNAME', 'root');
-define('PASSWORD', '');
-define('DB', 'memorama');
+if (!defined('SERVER')) {
+    define('SERVER', 'localhost');
+}
+if (!defined('USERNAME')) {
+    define('USERNAME', 'root');
+}
+if (!defined('PASSWORD')) {
+    define('PASSWORD', '');
+}
+if (!defined('DB')) {
+    define('DB', 'memorama');
+}
 
 class DataBaseManager {
 
