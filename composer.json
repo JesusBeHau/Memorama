@@ -4,7 +4,7 @@
             "core/php/"
         ]
     },
-    "require-dev": {
-        "phpunit/phpunit": "*"
+    "require": {
+        "phpunit/phpunit": "^11.1"
     }
 }
